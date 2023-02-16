@@ -18,7 +18,7 @@ public class CardHolder : MonoBehaviour
         private set { _instanse = value; } 
     }
 
-    private void Start()
+    private void Awake()
     {
         FillListOfCards(transform);
         Instanse = this;

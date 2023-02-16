@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonsController : MonoBehaviour
+public class LoadController : MonoBehaviour
 {
     [SerializeField]
     private Button _loadButton;
@@ -9,6 +9,7 @@ public class ButtonsController : MonoBehaviour
     private Button _cancelButton;
     [SerializeField]
     private string _mediaUrl = "https://picsum.photos/200";
+    
 
     private void Start()
     {
@@ -18,9 +19,9 @@ public class ButtonsController : MonoBehaviour
 
     private void LoadImages()
     {
-        foreach (var card in CardHolder.Instanse.AllCards)
+        if (DropdownController.DropdownStatus == (int)DropdownItems.WHENIMAGEREADY)
         {
-            StartCoroutine(ImageLoader.LoadImage(_mediaUrl, card.CardImage));
+            WhenImageReady.LoadImages(_mediaUrl, this);
         }
     }
 

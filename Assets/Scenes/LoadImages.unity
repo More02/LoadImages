@@ -1927,6 +1927,7 @@ GameObject:
   - component: {fileID: 1242335162}
   - component: {fileID: 1242335164}
   - component: {fileID: 1242335163}
+  - component: {fileID: 1242335165}
   m_Layer: 5
   m_Name: CardHolder
   m_TagString: Untagged
@@ -1993,6 +1994,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242335161}
   m_CullTransparentMesh: 1
+--- !u!114 &1242335165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242335161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f466079f43de34419519267e04a286e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1254268572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2338,8 @@ GameObject:
   - component: {fileID: 1493465957}
   - component: {fileID: 1493465956}
   - component: {fileID: 1493465955}
+  - component: {fileID: 1493465960}
+  - component: {fileID: 1493465959}
   m_Layer: 5
   m_Name: CanvasMenu
   m_TagString: Untagged
@@ -2414,6 +2429,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1493465959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493465954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2285e5ff6b0b3b49858827b974b753a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dropdown: {fileID: 1147866901}
+--- !u!114 &1493465960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493465954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5910df1c8a340941b1ff5cbd2c15057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadButton: {fileID: 1813509772}
+  _cancelButton: {fileID: 950872488}
+  _mediaUrl: https://picsum.photos/200
 --- !u!224 &1549986233 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6307093781661649712, guid: 2358caec891c06b419d5ca3c159f7fed, type: 3}
