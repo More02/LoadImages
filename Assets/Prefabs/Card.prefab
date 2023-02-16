@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6307093781661649712}
   - component: {fileID: 7116963457078858988}
-  - component: {fileID: 678206895845188358}
+  - component: {fileID: 8202310149306927097}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -50,7 +50,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2342132265015255953}
   m_CullTransparentMesh: 1
---- !u!114 &678206895845188358
+--- !u!114 &8202310149306927097
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2342132265015255953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cbbc231583fdb48a215dcdd1d3d52c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b373b7c62d154041854fbdfff12e84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cardImage: {fileID: 2213008635718068781}
