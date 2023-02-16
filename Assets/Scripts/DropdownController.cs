@@ -12,9 +12,9 @@ public class DropdownController : MonoBehaviour
 {
     [SerializeField]
     private TMP_Dropdown _dropdown;
-    private static int _dropdownStatus;
+    private static DropdownItems _dropdownStatus;
 
-    public static int DropdownStatus 
+    public static DropdownItems DropdownStatus 
     { 
         get { return _dropdownStatus; } 
     }
@@ -30,14 +30,14 @@ public class DropdownController : MonoBehaviour
     {
         switch (change.value)
         {
-            case (int)DropdownItems.ALLATONCE:
-                _dropdownStatus = (int)DropdownItems.ALLATONCE;
+            case 0:
+                _dropdownStatus = DropdownItems.ALLATONCE;
                 break;
-            case (int)DropdownItems.ONEBYONE:
-                _dropdownStatus = (int)DropdownItems.ONEBYONE;
+            case 1:
+                _dropdownStatus = DropdownItems.ONEBYONE;
                 break;
-            case(int)DropdownItems.WHENIMAGEREADY:
-                _dropdownStatus = (int)DropdownItems.WHENIMAGEREADY;
+            case 2:
+                _dropdownStatus = DropdownItems.WHENIMAGEREADY;
                 break;
             default:
                 break;
