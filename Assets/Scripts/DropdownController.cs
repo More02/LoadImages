@@ -14,6 +14,10 @@ public class DropdownController : MonoBehaviour
     private TMP_Dropdown _dropdown;
     private static DropdownItems _dropdownStatus;
 
+    public TMP_Dropdown Dropdown
+    {
+        get { return _dropdown; }
+    }
     public static DropdownItems DropdownStatus 
     { 
         get { return _dropdownStatus; } 
