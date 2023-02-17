@@ -1,7 +1,13 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum TypesOfDelay
+{
+    YELD,
+    DELAY
+}
 public class UIController : MonoBehaviour
 {
     [SerializeField]
@@ -20,39 +26,41 @@ public class UIController : MonoBehaviour
     }
 
     private async void LoadButtonHandler()
-    {
-        ResetCardsToBack();
-        InteractableToggle();
-        ImageLoader.IsCanceled = false;      
+    {   
         if (DropdownController.DropdownStatus == DropdownItems.ALLATONCE)
         {
+            await PreparationForLoading(TypesOfDelay.YELD);
             await WaysOfLoading.AllAtOnceLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle();
+            if (!ImageLoader.IsCanceled) InteractableToggle(false);
         }
         else if (DropdownController.DropdownStatus == DropdownItems.ONEBYONE)
         {
+            await PreparationForLoading(TypesOfDelay.YELD);
             await WaysOfLoading.OneByOneLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle();
+            if (!ImageLoader.IsCanceled) InteractableToggle(false);
         }
         else if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
         {
+            await PreparationForLoading(TypesOfDelay.DELAY);
             await WaysOfLoading.WhenImageReadyLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle();
+            if (!ImageLoader.IsCanceled) InteractableToggle(false);
         }
     }
 
-    private void CancelButtonHandler()
+    private async void CancelButtonHandler()
     {
         ResetCardsToBack();
-        InteractableToggle();
+        await Task.Yield();
+        InteractableToggle(false);
+        
         ImageLoader.IsCanceled = true;        
     }
 
-    public void InteractableToggle ()
+    public void InteractableToggle (bool toggle)
     {
-        _loadButton.interactable = !_loadButton.interactable;
-        _dropdown.interactable = !_dropdown.interactable;
-        _cancelButton.interactable = !_cancelButton.interactable;
+        _loadButton.interactable = !toggle;
+        _dropdown.interactable = !toggle;
+        _cancelButton.interactable = toggle;
     }
 
     private void ResetCardsToBack()
@@ -61,5 +69,20 @@ public class UIController : MonoBehaviour
         {
             card.RotateCards.ToBack();
         }
+    }
+
+    private async Task PreparationForLoading(TypesOfDelay typeOfDelay)
+    {
+        ResetCardsToBack();
+        if (typeOfDelay == TypesOfDelay.YELD)
+        {
+            await Task.Yield();
+        }
+        else if (typeOfDelay == TypesOfDelay.DELAY)
+        {
+            await Task.Delay(800);
+        }       
+        InteractableToggle(true);
+        ImageLoader.IsCanceled = false;
     }
 }
