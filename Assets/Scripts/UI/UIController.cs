@@ -11,24 +11,12 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown _dropdown;
     private static string _mediaUrl = "https://picsum.photos/200";
-    private static UIController _instanse;
-
-    public static string MediaUrl
-    {
-        get { return _mediaUrl; }
-    }
-    public static UIController Instanse
-    {
-        get { return _instanse; }
-        private set { _instanse = value; }
-    }
 
     private void Start()
     {
         _loadButton.onClick.AddListener(LoadButtonHandler);
         _cancelButton.onClick.AddListener(CancelButtonHandler);
         _cancelButton.interactable = false;
-        Instanse = this;
     }
 
     private async void LoadButtonHandler()

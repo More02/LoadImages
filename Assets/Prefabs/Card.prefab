@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frontSide: {fileID: 5902000766512373257}
   _backSide: {fileID: 1277846568348523507}
-  "_\u0441ardState": 1
+  _cardState: 1
   _time: 0.4
 --- !u!1 &2736353463421524628
 GameObject:

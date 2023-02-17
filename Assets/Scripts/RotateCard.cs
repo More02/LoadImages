@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -18,7 +17,6 @@ public class RotateCard : MonoBehaviour
     private CardState _cardState = CardState.BACK;
     [SerializeField]
     private float _time = 0.4f;
-    private bool _isActive = false;
 
     public void Init()
     {
@@ -39,37 +37,19 @@ public class RotateCard : MonoBehaviour
         Init();
     }
 
-    public async void StartBack()
-    {
-        if (_isActive)
-            return;
-        ToBack();
-    }
-
-    public async void StartFront()
-    {
-        if (_isActive)
-            return;
-        ToFront();
-    }
-
 	public async Task ToBack()
     {
-        _isActive = true;
         _frontSide.transform.DORotate(new Vector3(0, 90, 0), _time);
         for (float i = _time; i >= 0; i -= Time.deltaTime)
             await Task.Yield();
         _backSide.transform.DORotate(new Vector3(0, 0, 0), _time);
-        _isActive = false;
     }
 
     public async void ToFront()
     {
-        _isActive = true;
         _backSide.transform.DORotate(new Vector3(0, 90, 0), _time);
         for (float i = _time; i >= 0; i -= Time.deltaTime)
             await Task.Yield();
         _frontSide.transform.DORotate(new Vector3(0, 0, 0), _time);
-        _isActive = false;
     }
 }
