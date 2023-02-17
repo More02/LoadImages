@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-
 public static class ImageLoader
 {
     public static async Task Loading(string mediaUrl, RawImage cardImage)
@@ -15,7 +14,6 @@ public static class ImageLoader
         {
             await Task.Yield();
         }
-
 
         if (request.result != UnityWebRequest.Result.Success)
         {
