@@ -33,6 +33,7 @@ public class UIController : MonoBehaviour
 
     private async void LoadButtonHandler()
     {
+        ResetCardsToBack();
         InteractableToggle();
         ImageLoader.IsCanceled = false;
         if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
@@ -54,6 +55,7 @@ public class UIController : MonoBehaviour
 
     private void CancelButtonHandler()
     {
+        ResetCardsToBack();
         InteractableToggle();
         ImageLoader.IsCanceled = true;        
     }
@@ -63,5 +65,13 @@ public class UIController : MonoBehaviour
         _loadButton.interactable = !_loadButton.interactable;
         _dropdown.interactable = !_dropdown.interactable;
         _cancelButton.interactable = !_cancelButton.interactable;
+    }
+
+    private void ResetCardsToBack()
+    {
+        foreach (var card in CardHolder.Instanse.AllCards)
+        {
+            card.RotateCards.ToBack();
+        }
     }
 }

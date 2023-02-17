@@ -11,7 +11,8 @@ public static class WaysOfLoading
         foreach (var card in CardHolder.Instanse.AllCards)
         {
             await card.ImageLoader.SetImage(card.CardImage);
-        }   
+            card.RotateCards.ToFront();
+        }
     }
 
     public static async Task OneByOneLoadImages(string mediaUrl)
@@ -21,6 +22,10 @@ public static class WaysOfLoading
             await card.ImageLoader.LoadingImage(mediaUrl);
             await card.ImageLoader.SetImage(card.CardImage);
         }
+        foreach (var card in CardHolder.Instanse.AllCards)
+        {
+            card.RotateCards.ToFront();
+        }
     }
 
     public static async Task WhenImageReadyLoadImages(string mediaUrl)
@@ -28,7 +33,11 @@ public static class WaysOfLoading
         foreach (var card in CardHolder.Instanse.AllCards)
         {            
             card.ImageLoader.LoadingImage(mediaUrl);
-            card.ImageLoader.SetImage(card.CardImage);            
+            card.ImageLoader.SetImage(card.CardImage);
+        }
+        foreach (var card in CardHolder.Instanse.AllCards)
+        {
+            card.RotateCards.ToFront();
         }
         await Task.Delay(500);
     }
