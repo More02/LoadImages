@@ -4,34 +4,32 @@ public static class WaysOfLoading
 {
     public static async Task AllAtOnceLoadImages(string mediaUrl)
     {
-        foreach (var card in CardHolder.Instanse.AllCards)
+        foreach (var card in CardManager.Instanse.AllCards)
         {
             await card.ImageLoader.LoadingImage(mediaUrl);
         }
-        foreach (var card in CardHolder.Instanse.AllCards)
+        foreach (var card in CardManager.Instanse.AllCards)
         {
             await card.ImageLoader.SetImage(card.CardImage);
-        }
-        if (!ImageLoader.IsCanceled) LoadController.Instanse.InteractableToggle();       
+        }   
     }
 
     public static async Task OneByOneLoadImages(string mediaUrl)
     {
-        foreach (var card in CardHolder.Instanse.AllCards)
+        foreach (var card in CardManager.Instanse.AllCards)
         {
             await card.ImageLoader.LoadingImage(mediaUrl);
             await card.ImageLoader.SetImage(card.CardImage);
         }
-        if (!ImageLoader.IsCanceled) LoadController.Instanse.InteractableToggle();
     }
 
     public static async Task WhenImageReadyLoadImages(string mediaUrl)
     {
-        foreach (var card in CardHolder.Instanse.AllCards)
+        foreach (var card in CardManager.Instanse.AllCards)
         {            
             card.ImageLoader.LoadingImage(mediaUrl);
-            card.ImageLoader.SetImage(card.CardImage);
+            card.ImageLoader.SetImage(card.CardImage);            
         }
-        if (!ImageLoader.IsCanceled) LoadController.Instanse.InteractableToggle();
+        await Task.Delay(500);
     }
 }

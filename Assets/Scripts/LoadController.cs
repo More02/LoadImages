@@ -64,5 +64,4 @@ public class LoadController : MonoBehaviour
         _dropdown.interactable = !_dropdown.interactable;
         _cancelButton.interactable = !_cancelButton.interactable;
     }
-
 }

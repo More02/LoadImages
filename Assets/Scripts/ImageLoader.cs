@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -23,10 +22,9 @@ public class ImageLoader
     }
 
     public async Task SetImage(RawImage cardImage)
-    {
-        if (_isCanceled) return;
-
+    {        
         await YieldRequest();
+        if (_isCanceled) return;
         if (_request.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(_request.error);
