@@ -23,13 +23,8 @@ public class UIController : MonoBehaviour
     {
         ResetCardsToBack();
         InteractableToggle();
-        ImageLoader.IsCanceled = false;
-        if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
-        {
-            await WaysOfLoading.WhenImageReadyLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle();
-        }
-        else if (DropdownController.DropdownStatus == DropdownItems.ALLATONCE)
+        ImageLoader.IsCanceled = false;      
+        if (DropdownController.DropdownStatus == DropdownItems.ALLATONCE)
         {
             await WaysOfLoading.AllAtOnceLoadImages(_mediaUrl);
             if (!ImageLoader.IsCanceled) InteractableToggle();
@@ -37,6 +32,11 @@ public class UIController : MonoBehaviour
         else if (DropdownController.DropdownStatus == DropdownItems.ONEBYONE)
         {
             await WaysOfLoading.OneByOneLoadImages(_mediaUrl);
+            if (!ImageLoader.IsCanceled) InteractableToggle();
+        }
+        else if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
+        {
+            await WaysOfLoading.WhenImageReadyLoadImages(_mediaUrl);
             if (!ImageLoader.IsCanceled) InteractableToggle();
         }
     }

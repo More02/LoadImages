@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 public static class WaysOfLoading 
@@ -24,7 +25,7 @@ public static class WaysOfLoading
         }
         foreach (var card in CardHolder.Instanse.AllCards)
         {
-            card.RotateCards.ToFront();
+            await card.RotateCards.ToFront();
         }
     }
 
@@ -34,10 +35,12 @@ public static class WaysOfLoading
         {            
             card.ImageLoader.LoadingImage(mediaUrl);
             card.ImageLoader.SetImage(card.CardImage);
-        }
-        foreach (var card in CardHolder.Instanse.AllCards)
-        {
-            card.RotateCards.ToFront();
+            var checkLoad = card.ImageLoader.SetImage(card.CardImage);
+            while (!checkLoad.IsCompleted)
+            {
+                await Task.Yield();
+            }
+            card.RotateCards.ToFront(); 
         }
         await Task.Delay(500);
     }

@@ -45,7 +45,7 @@ public class RotateCard : MonoBehaviour
         _backSide.transform.DORotate(new Vector3(0, 0, 0), _time);
     }
 
-    public async void ToFront()
+    public async Task ToFront()
     {
         _backSide.transform.DORotate(new Vector3(0, 90, 0), _time);
         for (float i = _time; i >= 0; i -= Time.deltaTime)

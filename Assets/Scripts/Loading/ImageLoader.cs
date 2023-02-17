@@ -21,10 +21,10 @@ public class ImageLoader
         await YieldRequest();
     }
 
-    public async Task SetImage(RawImage cardImage)
+    public async Task<bool> SetImage(RawImage cardImage)
     {        
         await YieldRequest();
-        if (_isCanceled) return;
+        if (_isCanceled) return false;
         if (_request.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(_request.error);
@@ -33,6 +33,7 @@ public class ImageLoader
         {
             cardImage.texture = ((DownloadHandlerTexture)_request.downloadHandler).texture;
         }
+        return true;
     }
 
     private async Task YieldRequest()
