@@ -4,6 +4,7 @@ public static class WaysOfLoading
     {
         foreach (var card in CardHolder.Instanse.AllCards)
         {
+            card.ImageLoader.IsCanceled = false;
             await card.ImageLoader.LoadingImage(mediaUrl);
         }
         foreach (var card in CardHolder.Instanse.AllCards)
@@ -16,6 +17,7 @@ public static class WaysOfLoading
     {
         foreach (var card in CardHolder.Instanse.AllCards)
         {
+            card.ImageLoader.IsCanceled = false;
             await card.ImageLoader.LoadingImage(mediaUrl);
             await card.ImageLoader.SetImage(card.CardImage);
         }
@@ -25,8 +27,17 @@ public static class WaysOfLoading
     {
         foreach (var card in CardHolder.Instanse.AllCards)
         {
+            card.ImageLoader.IsCanceled = false;
             card.ImageLoader.LoadingImage(mediaUrl);
             card.ImageLoader.SetImage(card.CardImage);
+        }
+    }
+
+    public static void AbordLoadImages()
+    {
+        foreach (var card in CardHolder.Instanse.AllCards)
+        {
+            card.ImageLoader.AbortRequest();
         }
     }
 }

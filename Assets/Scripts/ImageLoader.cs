@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -6,8 +7,16 @@ using UnityEngine.UI;
 public class ImageLoader
 {
     private UnityWebRequest _request;
+    private bool _isCanceled = false;
+
+    public bool IsCanceled 
+    { 
+        get { return _isCanceled; }
+        set { _isCanceled = value; }
+    }
     public async Task LoadingImage(string mediaUrl)
     {
+        if (_isCanceled) return;
         _request = UnityWebRequestTexture.GetTexture(mediaUrl);
         _request.SendWebRequest();
         await YieldRequest();
@@ -15,6 +24,8 @@ public class ImageLoader
 
     public async Task SetImage(RawImage cardImage)
     {
+        if (_isCanceled) return;
+
         await YieldRequest();
         if (_request.result != UnityWebRequest.Result.Success)
         {
@@ -28,9 +39,22 @@ public class ImageLoader
 
     private async Task YieldRequest()
     {
-        while (!_request.isDone)
+        if (_isCanceled) return;
+        while (!_request.isDone && !_isCanceled)
         {
             await Task.Yield();
         }
+    }
+
+    
+
+    public void AbortRequest()
+    {
+        //if (_request != null)
+        //{
+        //    _request.Abort();
+        //    //cardImage.texture = null;
+        //}
+        _isCanceled = true;
     }
 }
