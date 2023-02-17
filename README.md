@@ -10,7 +10,9 @@
 ---
 
 # Images
-<img src="landing/.jpg" width = 900/>
+<img src="landing/1.png" width = 900/>
+<img src="landing/2.png" width = 900/>
+<img src="landing/3.png" width = 900/>
 
 ---
 
