@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardManager : MonoBehaviour 
+public class CardHolder : MonoBehaviour 
 {
     private List<Card> _allCards = new List<Card>();
-    private static CardManager _instanse;
+    private static CardHolder _instanse;
 
     public List<Card> AllCards
     {
         get { return _allCards; }
     }   
-    public static CardManager Instanse 
+    public static CardHolder Instanse 
     { 
         get { return _instanse; }  
         private set { _instanse = value; } 

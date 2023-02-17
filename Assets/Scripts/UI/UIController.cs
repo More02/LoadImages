@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadController : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     [SerializeField]
     private Button _loadButton;
@@ -11,13 +11,13 @@ public class LoadController : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown _dropdown;
     private static string _mediaUrl = "https://picsum.photos/200";
-    private static LoadController _instanse;
+    private static UIController _instanse;
 
     public static string MediaUrl
     {
         get { return _mediaUrl; }
     }
-    public static LoadController Instanse
+    public static UIController Instanse
     {
         get { return _instanse; }
         private set { _instanse = value; }
