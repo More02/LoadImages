@@ -32,6 +32,7 @@ public class LoadController : MonoBehaviour
 
     private static void LoadImages()
     {
+        ImageLoader.IsCanceled = false;
         if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
         {
             WaysOfLoading.WhenImageReadyLoadImages(_mediaUrl);
@@ -48,7 +49,7 @@ public class LoadController : MonoBehaviour
 
     private void CancelLoading()
     {
-        WaysOfLoading.AbordLoadImages();
+        ImageLoader.IsCanceled = true;
     }
 
 }

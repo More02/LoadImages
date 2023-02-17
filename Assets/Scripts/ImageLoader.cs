@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class ImageLoader
 {
     private UnityWebRequest _request;
-    private bool _isCanceled = false;
+    private static bool _isCanceled = false;
 
-    public bool IsCanceled 
+    public static bool IsCanceled 
     { 
         get { return _isCanceled; }
         set { _isCanceled = value; }
@@ -44,17 +44,5 @@ public class ImageLoader
         {
             await Task.Yield();
         }
-    }
-
-    
-
-    public void AbortRequest()
-    {
-        //if (_request != null)
-        //{
-        //    _request.Abort();
-        //    //cardImage.texture = null;
-        //}
-        _isCanceled = true;
     }
 }
