@@ -3,25 +3,34 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public static class ImageLoader
+public class ImageLoader
 {
-    public static async Task Loading(string mediaUrl, RawImage cardImage)
+    private UnityWebRequest _request;
+    public async Task LoadingImage(string mediaUrl)
     {
-        UnityWebRequest request = UnityWebRequestTexture.GetTexture(mediaUrl);
-        request.SendWebRequest();
+        _request = UnityWebRequestTexture.GetTexture(mediaUrl);
+        _request.SendWebRequest();
+        await YieldRequest();
+    }
 
-        while (!request.isDone)
+    public async Task SetImage(RawImage cardImage)
+    {
+        await YieldRequest();
+        if (_request.result != UnityWebRequest.Result.Success)
         {
-            await Task.Yield();
-        }
-
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log(request.error);
+            Debug.Log(_request.error);
         }
         else
         {
-            cardImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            cardImage.texture = ((DownloadHandlerTexture)_request.downloadHandler).texture;
+        }
+    }
+
+    private async Task YieldRequest()
+    {
+        while (!_request.isDone)
+        {
+            await Task.Yield();
         }
     }
 }

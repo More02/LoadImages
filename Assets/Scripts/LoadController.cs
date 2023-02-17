@@ -31,7 +31,7 @@ public class LoadController : MonoBehaviour
         Instanse = this;
     }
 
-    private void LoadImages()
+    private static async void LoadImages()
     {
         if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
         {
@@ -39,13 +39,7 @@ public class LoadController : MonoBehaviour
         }
         else if (DropdownController.DropdownStatus == DropdownItems.ALLATONCE)
         {
-            //AllAtOnce jobData = new AllAtOnce();
-            //jobData.MediaUrl = (NativeArray<char>)_mediaUrl;
-            //jobData.MonoBehaviourObj = this;
-            //jobData.MediaUrl = (NativeArray<char>)_mediaUrl;
-            //jobData.MonoBehaviourObj = this;
-            //JobHandle handle = jobData.Schedule();
-            //handle.Complete();
+            AllAtOnce.LoadImages(_mediaUrl);
         }
         else if (DropdownController.DropdownStatus == DropdownItems.ONEBYONE)
         {
