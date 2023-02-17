@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class WaysOfLoading 
 {
     public static async void AllAtOnceLoadImages(string mediaUrl)
@@ -25,7 +21,7 @@ public static class WaysOfLoading
         }
     }
 
-    public static async void WhenImageReadyLoadImages(string mediaUrl)
+    public static void WhenImageReadyLoadImages(string mediaUrl)
     {
         foreach (var card in CardHolder.Instanse.AllCards)
         {

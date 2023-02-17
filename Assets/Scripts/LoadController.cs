@@ -9,7 +9,6 @@ public class LoadController : MonoBehaviour
     private Button _cancelButton;
     [SerializeField]
     private static string _mediaUrl = "https://picsum.photos/200";
-    private static LoadController _instance;
 
     public static string MediaUrl
     {
@@ -23,7 +22,6 @@ public class LoadController : MonoBehaviour
         private set { _instanse = value; }
     }
 
-
     private void Start()
     {
         _loadButton.onClick.AddListener(LoadImages);
@@ -31,19 +29,19 @@ public class LoadController : MonoBehaviour
         Instanse = this;
     }
 
-    private static async void LoadImages()
+    private static void LoadImages()
     {
         if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
         {
-            WhenImageReady.LoadImages(_mediaUrl);
+            WaysOfLoading.WhenImageReadyLoadImages(_mediaUrl);
         }
         else if (DropdownController.DropdownStatus == DropdownItems.ALLATONCE)
         {
-            AllAtOnce.LoadImages(_mediaUrl);
+            WaysOfLoading.AllAtOnceLoadImages(_mediaUrl);
         }
         else if (DropdownController.DropdownStatus == DropdownItems.ONEBYONE)
         {
-            OneByOne.LoadImages(_mediaUrl);
+            WaysOfLoading.OneByOneLoadImages(_mediaUrl);
         }
     }
 
