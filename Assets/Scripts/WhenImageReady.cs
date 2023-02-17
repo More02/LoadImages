@@ -6,7 +6,7 @@ public static class WhenImageReady
     {
         foreach (var card in CardHolder.Instanse.AllCards)
         {
-            ImageLoader.LoadWhenReady(mediaUrl, card.CardImage);
+            ImageLoader.Loading(mediaUrl, card.CardImage);
         }
     }
 }
