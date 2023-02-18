@@ -4,11 +4,6 @@
 
 ---
 
-# Video
-[![video](https://img.jpg)](https://)
-
----
-
 # Images
 <img src="landing/1.png" width = 900/>
 <img src="landing/2.png" width = 900/>
