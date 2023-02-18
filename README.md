@@ -2,6 +2,8 @@
 
 Приложение для загрузки и отображения изображений.
 
+[Видео](https://drive.google.com/file/d/1d3djAo7bkz_u9bgPKlQjV83EjsVAFBb0/view?usp=share_link)
+
 ---
 
 # Images
