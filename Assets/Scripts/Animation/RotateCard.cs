@@ -1,12 +1,19 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Перечисляемый тип с видами состояния карты
+/// </summary>
 public enum CardState
 {
     FRONT,
     BACK
 }
+
+/// <summary>
+/// Анимания поворота карты через DOTween
+/// </summary>
 public class RotateCard : MonoBehaviour
 {
     [SerializeField]

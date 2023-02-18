@@ -1,6 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Хранение списка карточек
+/// </summary>
 public class CardHolder : MonoBehaviour 
 {
     private List<Card> _allCards = new List<Card>();

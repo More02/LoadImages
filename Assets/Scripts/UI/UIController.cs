@@ -1,13 +1,20 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Перечисляемый тип с видами задержки 
+/// </summary>
 public enum TypesOfDelay
 {
     YELD,
     DELAY
 }
+
+/// <summary>
+/// Обработка нажатий на UI элементы
+/// </summary>
 public class UIController : MonoBehaviour
 {
     [SerializeField]

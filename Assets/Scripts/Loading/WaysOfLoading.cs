@@ -1,8 +1,15 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
+/// <summary>
+/// Виды загрузки и отображения изображений 
+/// </summary>
 public static class WaysOfLoading 
 {
+    /// <summary>
+    /// Параллельная загрузка и показ изображений
+    /// </summary>
+    /// <param name="mediaUrl"></param>
+    /// <returns></returns>
     public static async Task AllAtOnceLoadImages(string mediaUrl)
     {
         foreach (var card in CardHolder.Instanse.AllCards)
@@ -16,6 +23,11 @@ public static class WaysOfLoading
         }
     }
 
+    /// <summary>
+    /// Последовательная загрузка и показ изображений
+    /// </summary>
+    /// <param name="mediaUrl"></param>
+    /// <returns></returns>
     public static async Task OneByOneLoadImages(string mediaUrl)
     {
         foreach (var card in CardHolder.Instanse.AllCards)
@@ -29,6 +41,11 @@ public static class WaysOfLoading
         }
     }
 
+    /// <summary>
+    /// Загрузка и показ изображений по готовности
+    /// </summary>
+    /// <param name="mediaUrl"></param>
+    /// <returns></returns>
     public static async Task WhenImageReadyLoadImages(string mediaUrl)
     {
         foreach (var card in CardHolder.Instanse.AllCards)

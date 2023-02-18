@@ -1,6 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Базовый класс для карты
+/// </summary>
 public class Card : MonoBehaviour
 {
     [SerializeField]

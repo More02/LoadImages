@@ -1,8 +1,11 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+/// <summary>
+/// Инструменты для загрузки и отображения изображений
+/// </summary>
 public class ImageLoader
 {
     private UnityWebRequest _request;

@@ -1,6 +1,9 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Перечисляемый тип с видами загрузки и отображения изображений
+/// </summary>
 public enum DropdownItems
 {
     ALLATONCE = 0,
@@ -8,16 +11,15 @@ public enum DropdownItems
     WHENIMAGEREADY = 2
 }
 
+/// <summary>
+/// Обработка выпадающего списка с видами загрузки и отображения изображений
+/// </summary>
 public class DropdownController : MonoBehaviour
 {
     [SerializeField]
     private TMP_Dropdown _dropdown;
     private static DropdownItems _dropdownStatus;
 
-    public TMP_Dropdown Dropdown
-    {
-        get { return _dropdown; }
-    }
     public static DropdownItems DropdownStatus 
     { 
         get { return _dropdownStatus; } 
