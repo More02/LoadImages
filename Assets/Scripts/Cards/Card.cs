@@ -1,34 +1,28 @@
-﻿using UnityEngine;
+﻿using Animation;
+using Loading;
+using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Базовый класс для карты
-/// </summary>
-public class Card : MonoBehaviour
+namespace Cards
 {
-    [SerializeField]
-    private RawImage _cardImage;
-    private ImageLoader _imageLoader;
-    private RotateCard _rotateCards;
-
-    public ImageLoader ImageLoader
+    /// <summary>
+    /// Базовый класс для карты
+    /// </summary>
+    public class Card : MonoBehaviour
     {
-        get { return _imageLoader; }
-    }
+        [SerializeField] 
+        private RawImage _cardImage;
 
-    public RotateCard RotateCards
-    {
-        get {return _rotateCards;}
-    }
+        public ImageLoader ImageLoader { get; private set; }
 
-    public RawImage CardImage
-    { 
-        get { return _cardImage; } 
-    }
+        public RotateCard RotateCards { get; private set; }
 
-    private void Awake()
-    {
-        _imageLoader = new ImageLoader();
-        _rotateCards = GetComponent<RotateCard>();
+        public RawImage CardImage => _cardImage;
+
+        private void Awake()
+        {
+            ImageLoader = new ImageLoader();
+            RotateCards = GetComponent<RotateCard>();
+        }
     }
 }

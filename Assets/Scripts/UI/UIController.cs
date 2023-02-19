@@ -1,95 +1,105 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Cards;
+using Loading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Перечисляемый тип с видами задержки 
-/// </summary>
-public enum TypesOfDelay
+namespace UI
 {
-    YELD,
-    DELAY
-}
-
-/// <summary>
-/// Обработка нажатий на UI элементы
-/// </summary>
-public class UIController : MonoBehaviour
-{
-    [SerializeField]
-    private Button _loadButton;
-    [SerializeField]
-    private Button _cancelButton;
-    [SerializeField]
-    private TMP_Dropdown _dropdown;
-    private static string _mediaUrl = "https://picsum.photos/200";
-
-    private void Start()
+    /// <summary>
+    /// Обработка нажатий на UI элементы
+    /// </summary>
+    public class UIController : MonoBehaviour
     {
-        _loadButton.onClick.AddListener(LoadButtonHandler);
-        _cancelButton.onClick.AddListener(CancelButtonHandler);
-        _cancelButton.interactable = false;
-    }
+        [SerializeField] 
+        private Button _loadButton;
+        [SerializeField] 
+        private Button _cancelButton;
+        [SerializeField] 
+        private TMP_Dropdown _dropdown;
 
-    private async void LoadButtonHandler()
-    {   
-        if (DropdownController.DropdownStatus == DropdownItems.ALLATONCE)
+        private const string MediaUrl = "https://picsum.photos/200";
+
+        private void Start()
         {
-            await PreparationForLoading(TypesOfDelay.YELD);
-            await WaysOfLoading.AllAtOnceLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle(false);
+            _loadButton.onClick.AddListener(LoadButtonHandler);
+            _cancelButton.onClick.AddListener(CancelButtonHandler);
+            _cancelButton.interactable = false;
         }
-        else if (DropdownController.DropdownStatus == DropdownItems.ONEBYONE)
+
+        private async void LoadButtonHandler()
         {
-            await PreparationForLoading(TypesOfDelay.YELD);
-            await WaysOfLoading.OneByOneLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle(false);
+            switch (DropdownController.DropdownStatus)
+            {
+                case DropdownItems.Allatonce:
+                {
+                    await PreparationForLoading(TypesOfDelay.Yeld);
+                    await WaysOfLoading.AllAtOnceLoadImages(MediaUrl);
+                    if (!ImageLoader.IsCanceled) InteractableToggle(false);
+                    break;
+                }
+                case DropdownItems.Onebyone:
+                {
+                    await PreparationForLoading(TypesOfDelay.Yeld);
+                    await WaysOfLoading.OneByOneLoadImages(MediaUrl);
+                    if (!ImageLoader.IsCanceled) InteractableToggle(false);
+                    break;
+                }
+                case DropdownItems.Whenimageready:
+                {
+                    await PreparationForLoading(TypesOfDelay.Delay);
+                    await WaysOfLoading.WhenImageReadyLoadImages(MediaUrl);
+                    if (!ImageLoader.IsCanceled) InteractableToggle(false);
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
-        else if (DropdownController.DropdownStatus == DropdownItems.WHENIMAGEREADY)
+
+        private async void CancelButtonHandler()
         {
-            await PreparationForLoading(TypesOfDelay.DELAY);
-            await WaysOfLoading.WhenImageReadyLoadImages(_mediaUrl);
-            if (!ImageLoader.IsCanceled) InteractableToggle(false);
-        }
-    }
-
-    private async void CancelButtonHandler()
-    {
-        ResetCardsToBack();
-        await Task.Yield();
-        InteractableToggle(false);
-        
-        ImageLoader.IsCanceled = true;        
-    }
-
-    public void InteractableToggle (bool toggle)
-    {
-        _loadButton.interactable = !toggle;
-        _dropdown.interactable = !toggle;
-        _cancelButton.interactable = toggle;
-    }
-
-    private void ResetCardsToBack()
-    {
-        foreach (var card in CardHolder.Instanse.AllCards)
-        {
-            card.RotateCards.ToBack();
-        }
-    }
-
-    private async Task PreparationForLoading(TypesOfDelay typeOfDelay)
-    {
-        ResetCardsToBack();
-        if (typeOfDelay == TypesOfDelay.YELD)
-        {
+            ResetCardsToBack();
             await Task.Yield();
+            InteractableToggle(false);
+
+            ImageLoader.IsCanceled = true;
         }
-        else if (typeOfDelay == TypesOfDelay.DELAY)
+
+        private void InteractableToggle(bool toggle)
         {
-            await Task.Delay(800);
-        }       
-        InteractableToggle(true);
-        ImageLoader.IsCanceled = false;
+            _loadButton.interactable = !toggle;
+            _dropdown.interactable = !toggle;
+            _cancelButton.interactable = toggle;
+        }
+
+        private static void ResetCardsToBack()
+        {
+            foreach (var card in CardHolder.Instanse.AllCards)
+            {
+                card.RotateCards.ToBack();
+            }
+        }
+
+        private async Task PreparationForLoading(TypesOfDelay typeOfDelay)
+        {
+            ResetCardsToBack();
+            switch (typeOfDelay)
+            {
+                case TypesOfDelay.Yeld:
+                    await Task.Yield();
+                    break;
+                case TypesOfDelay.Delay:
+                    await Task.Delay(800);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(typeOfDelay), typeOfDelay, null);
+            }
+
+            InteractableToggle(true);
+            ImageLoader.IsCanceled = false;
+        }
     }
 }

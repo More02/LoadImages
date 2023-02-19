@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Создание карточек
-/// </summary>
-public class CardFactory : MonoBehaviour
+namespace Cards
 {
-    [SerializeField]
-    private GameObject _cardPrefab;
-    [SerializeField]
-    private int _numberCards = 5;
-
-    private void InstantiateCards(int numberCards)
+    /// <summary>
+    /// Создание карточек
+    /// </summary>
+    public class CardFactory : MonoBehaviour
     {
-        for (int i = 0; i < numberCards; i++)
+        [SerializeField] 
+        private GameObject _cardPrefab;
+        [SerializeField] 
+        private int _numberCards = 5;
+
+        private void InstantiateCards(int numberCards)
         {
-            Instantiate(_cardPrefab, transform);
+            for (var i = 0; i < numberCards; i++)
+            {
+                Instantiate(_cardPrefab, transform);
+            }
         }
-    }
 
-    private void Awake()
-    {
-        InstantiateCards(_numberCards);
+        private void Awake()
+        {
+            InstantiateCards(_numberCards);
+        }
     }
 }

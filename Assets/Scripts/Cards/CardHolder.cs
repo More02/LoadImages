@@ -1,39 +1,33 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Хранение списка карточек
-/// </summary>
-public class CardHolder : MonoBehaviour 
+namespace Cards
 {
-    private List<Card> _allCards = new List<Card>();
-    private static CardHolder _instanse;
-
-    public List<Card> AllCards
+    /// <summary>
+    /// Хранение списка карточек
+    /// </summary>
+    public class CardHolder : MonoBehaviour
     {
-        get { return _allCards; }
-    }   
-    public static CardHolder Instanse 
-    { 
-        get { return _instanse; }  
-        private set { _instanse = value; } 
-    }
+        public List<Card> AllCards { get; } = new();
 
-    private void Awake()
-    {       
-        Instanse = this;
-    }
+        public static CardHolder Instanse { get; private set; }
 
-    private void Start()
-    {
-        FillListOfCards();
-    }
-
-    private void FillListOfCards()
-    {
-        foreach (var card in transform.GetComponentsInChildren<Card>())
+        private void Awake()
         {
-            _allCards.Add(card);
+            Instanse = this;
+        }
+
+        private void Start()
+        {
+            FillListOfCards();
+        }
+
+        private void FillListOfCards()
+        {
+            foreach (var card in transform.GetComponentsInChildren<Card>())
+            {
+                AllCards.Add(card);
+            }
         }
     }
 }
