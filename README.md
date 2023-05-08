@@ -12,6 +12,9 @@
 <img src="landing/1.png" width = 900/>
 <img src="landing/2.png" width = 900/>
 <img src="landing/3.png" width = 900/>
+<img src="landing/4.png" width = 900/>
+<img src="landing/5.png" width = 900/>
+<img src="landing/6.png" width = 900/>
 
 ---
 
